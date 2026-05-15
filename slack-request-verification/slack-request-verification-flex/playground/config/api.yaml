@@ -1,4 +1,4 @@
-# Copyright 2023 Salesforce, Inc. All rights reserved.
+# Copyright 2026 Salesforce, Inc. All rights reserved.
 #
 # Strict mode: rejectOnFailure=true, timestampToleranceSeconds=300
 # See api-test-scenarios.yaml for additional test configurations on /log-only/ and /short-tolerance/.
