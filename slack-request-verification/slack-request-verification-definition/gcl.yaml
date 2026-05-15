@@ -1,0 +1,35 @@
+---
+apiVersion: gateway.mulesoft.com/v1alpha1
+kind: Extension
+metadata:
+  labels:
+    title: Slack Request Verification
+    category: Security
+    description: >-
+      Validates incoming Slack requests by verifying HMAC-SHA256 signatures
+      using the app's signing secret. Supports replay attack protection via
+      timestamp validation and configurable reject or log-only behavior.
+    metadata/interfaceScope: api, resource
+spec:
+  extends:
+    - name: extension-definition
+      namespace: default
+  properties:
+    signingSecret:
+      type: string
+      description: The Slack app signing secret used to verify request signatures
+      "@context":
+        "@characteristics":
+          - "security:sensitive"
+    rejectOnFailure:
+      type: boolean
+      default: true
+      description: If true, reject requests with invalid signatures (401). If false, log warning and allow through
+    timestampToleranceSeconds:
+      type: integer
+      default: 300
+      description: Maximum allowed age of request timestamp in seconds (replay attack protection)
+      minimum: 1
+      maximum: 600
+  required:
+    - signingSecret

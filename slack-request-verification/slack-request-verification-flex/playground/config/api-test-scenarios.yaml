@@ -1,0 +1,47 @@
+# Additional API instances for testing different policy configurations.
+# These are loaded by Flex Gateway alongside api.yaml from the same config directory.
+#
+# Log-only mode (/log-only/): rejectOnFailure=false, timestampToleranceSeconds=300
+# Short tolerance (/short-tolerance/): rejectOnFailure=true, timestampToleranceSeconds=60
+---
+apiVersion: gateway.mulesoft.com/v1alpha1
+kind: ApiInstance
+metadata:
+  name: ingress-http-log-only
+spec:
+  address: http://0.0.0.0:8081/log-only/
+  services:
+    upstream:
+      address: http://backend
+      routes:
+        - config:
+            destinationPath: /anything/echo/
+  policies:
+    - policyRef:
+        name: slack-request-verification-flex-v1-1
+        namespace: default
+      config:
+        signingSecret: "8f742231b10e8888abcd99yyyzzz85a5"
+        rejectOnFailure: false
+        timestampToleranceSeconds: 300
+---
+apiVersion: gateway.mulesoft.com/v1alpha1
+kind: ApiInstance
+metadata:
+  name: ingress-http-short-tolerance
+spec:
+  address: http://0.0.0.0:8081/short-tolerance/
+  services:
+    upstream:
+      address: http://backend
+      routes:
+        - config:
+            destinationPath: /anything/echo/
+  policies:
+    - policyRef:
+        name: slack-request-verification-flex-v1-1
+        namespace: default
+      config:
+        signingSecret: "8f742231b10e8888abcd99yyyzzz85a5"
+        rejectOnFailure: true
+        timestampToleranceSeconds: 60
