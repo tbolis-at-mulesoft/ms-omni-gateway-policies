@@ -2,7 +2,7 @@
 
 This is the policy-implementation half of the **Instance ID Header Injection** policy. It compiles to a `wasm32-wasip1` module loaded by Flex Gateway at runtime.
 
-The policy was created with the Flex Gateway Policy Development Kit (PDK). For the complete PDK documentation, see [PDK Overview](https://docs.mulesoft.com/pdk/latest/policies-pdk-overview).
+The policy was created with the Omni Gateway Policy Development Kit (PDK). For the complete PDK documentation, see [PDK Overview](https://docs.mulesoft.com/pdk/latest/policies-pdk-overview).
 
 ## Make command reference
 This project has a Makefile that includes different goals that assist the developer during the policy development lifecycle.

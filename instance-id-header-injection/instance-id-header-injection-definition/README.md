@@ -2,7 +2,7 @@
 
 This is the policy-definition half of the **Instance ID Header Injection** policy. It declares the GCL schema (`gcl.yaml`) and the Anypoint Exchange asset coordinates (`exchange.json`) that the implementation half (`../instance-id-header-injection-flex/`) compiles against.
 
-The policy was created with the Flex Gateway Policy Development Kit (PDK). For the complete PDK documentation, see [PDK Overview](https://docs.mulesoft.com/pdk/latest/policies-pdk-overview).
+The policy was created with the Omni Gateway Policy Development Kit (PDK). For the complete PDK documentation, see [PDK Overview](https://docs.mulesoft.com/pdk/latest/policies-pdk-overview).
 
 ## Make command reference
 
