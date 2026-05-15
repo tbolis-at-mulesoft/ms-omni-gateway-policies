@@ -52,11 +52,6 @@ publish: build-asset-files build ## Publish a development version of the policy
 release: build-asset-files  build ## Publish a release version
 	@anypoint-cli-v4 pdk policy-wasm publish --wasm=$(TARGET_DIR)/$(CRATE_NAME).wasm  --target=$(BUILD_POLICY_DIR)/$(CRATE_NAME)
 
-.PHONY: release-interactive
-release-interactive: ## Publish release after selecting a BG interactively
-	@bash ../scripts/select-bg.sh Cargo.toml
-	@$(MAKE) release
-
 .PHONY: install-cargo-anypoint
 install-cargo-anypoint:
 	@cargo install cargo-anypoint@1.8.0
