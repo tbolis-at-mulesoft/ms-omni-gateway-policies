@@ -12,33 +12,41 @@ Each policy is a self-contained subproject with two halves:
 | Policy | Path | Purpose |
 |---|---|---|
 | Slack Request Verification | [`slack-request-verification/`](./slack-request-verification/) | Validates incoming Slack requests by verifying their HMAC-SHA256 signatures using the Slack app's signing secret. Implements the [Slack request verification](https://docs.slack.dev/authentication/verifying-requests-from-slack/) algorithm with replay-attack protection. |
+| Instance ID Header Injection | [`instance-id-header-injection/`](./instance-id-header-injection/) | Injects `x-anypoint-api-instance-id` with the API instance ID into every incoming request. Useful for request tracing, multi-instance correlation, and stitching standalone agents into the **Agent Visualizer** when calling MCP servers without an Agent Network. |
 
 > Additional policies live alongside in this repo and will be documented here over time.
 
 ## Repository layout
 
+The repo root holds shared metadata; each policy lives in its own top-level directory and follows the same split-model shape. Using **slack-request-verification** as the example:
+
 ```
 ms-omni-gateway-policies/
 ├── README.md                          # (this file)
+├── LICENSE
 ├── .gitignore                         # Common ignores for the whole monorepo
-└── slack-request-verification/
+└── <policy-name>/                     # e.g. slack-request-verification/
     ├── README.md                      # Policy overview & how it works
-    ├── docs/
+    ├── docs/                          # (optional) Per-policy guides
     │   ├── APPLYING_POLICY.md         # How to apply the policy to an API instance
     │   └── LOCAL_TESTING_GUIDE.md     # Step-by-step manual test guide
-    ├── slack-request-verification-definition/
+    ├── <policy-name>-definition/      # Anypoint Exchange asset (schema)
     │   ├── gcl.yaml                   # Policy schema
     │   ├── exchange.json              # Anypoint Exchange asset coordinates
     │   ├── HOME.md                    # Exchange landing page
-    │   ├── icon.png
-    │   └── Makefile                   # build / publish / release-local
-    └── slack-request-verification-flex/
+    │   ├── icon.png                   # Exchange icon
+    │   ├── README.md                  # PDK definition build/publish reference
+    │   └── Makefile                   # build / publish / release / release-local
+    └── <policy-name>-flex/            # Rust → WASM implementation
         ├── Cargo.toml                 # Rust crate manifest (PDK metadata)
-        ├── src/lib.rs                 # Policy entrypoint & request filter
+        ├── src/lib.rs                 # Policy entrypoint & filters
         ├── tests/                     # Integration tests (pdk-test + httpmock)
         ├── playground/                # Local Docker playground (Flex + httpbin)
+        ├── README.md                  # PDK flex build/run/test reference
         └── Makefile                   # build / run / test / publish / release
 ```
+
+Individual policies may add or omit pieces (e.g. an empty-config policy can skip `docs/`, the `definition/` half can ship without a custom `icon.png`). See each policy's own `README.md` for specifics.
 
 ## Prerequisites (development)
 

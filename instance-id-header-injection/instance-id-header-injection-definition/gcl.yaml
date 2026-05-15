@@ -1,0 +1,14 @@
+---
+apiVersion: gateway.mulesoft.com/v1alpha1
+kind: Extension
+metadata:
+  labels:
+    title: Instance ID Header Injection
+    description: Injects an "x-anypoint-api-instance-id" header with the API instance ID value at the beginning of message processing. The header is added to all incoming requests before they are forwarded to the backend service.
+    category: Custom
+    metadata/interfaceScope: api,resource
+spec:
+  extends:
+    - name: extension-definition
+      namespace: default
+  properties: {}
