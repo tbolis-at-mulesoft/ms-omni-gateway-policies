@@ -2,7 +2,7 @@
 
 This policy was created with the Omni Gateway Policy Development Kit (PDK). To find the complete PDK documentation, see [PDK Overview](https://docs.mulesoft.com/pdk/latest/policies-pdk-overview) on the Mulesoft documentation site.
 
-The policy is the policy-implementation part of a flex gateway policy.
+The policy is the policy-implementation part of an Omni Gateway policy.
 
 ## Make command reference
 This project has a Makefile that includes different goals that assist the developer during the policy development lifecycle.
