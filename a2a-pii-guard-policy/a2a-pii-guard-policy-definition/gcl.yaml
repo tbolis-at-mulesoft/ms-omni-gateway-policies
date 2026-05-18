@@ -1,0 +1,91 @@
+# Copyright 2026 Salesforce, Inc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: gateway.mulesoft.com/v1alpha1
+kind: Extension
+metadata:
+  labels:
+    title: A2A PII Guard
+    description: Detects PII in A2A JSON-RPC traffic. Supports predefined types (Email, US SSN, Credit Card, Phone Number) and custom regex patterns with per-entity Log/Reject actions and policy-violation reporting. Returns JSON-RPC 2.0 errors with configurable codes.
+    category: A2A
+    metadata/interfaceScope: api
+spec:
+  extends:
+    - name: extension-definition
+      namespace: default
+  properties:
+    predefinedEntities:
+      type: array
+      title: Predefined PII Types
+      description: Configure predefined PII types to detect and the action to take for each type.
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            title: PII Type
+            description: Select a predefined type of PII to detect
+            enum:
+              - Email
+              - US SSN
+              - Credit Card
+              - Phone Number
+          actions:
+            type: array
+            title: Actions
+            description: Select one or more actions to take when this PII type is detected.
+            items:
+              type: string
+              enum:
+                - Log
+                - Reject
+            uniqueItems: true
+          reportPolicyViolationOnLog:
+            type: boolean
+            title: Report policy violation on log
+            description: If true, Flex Gateway reports a policy violation when this PII type is detected even if only the "Log" action is configured. If false, policy violations are only reported when the "Reject" action is configured.
+            default: true
+        required:
+          - type
+          - actions
+    customEntities:
+      type: array
+      title: Custom PII Types
+      description: Configure custom PII types  to detect and the action to take for each type. 
+      items:
+        type: object
+        properties:
+          regex:
+            type: string
+            title: Custom Regex Pattern
+            description: A regular expression pattern to detect custom PII data
+          name:
+            type: string
+            title: Pattern Name
+            description: A descriptive name for this custom pattern (e.g., "Passport Number", "Driver License")
+          actions:
+            type: array
+            title: Actions
+            description: Select one or more actions to take when this pattern is detected.
+            items:
+              type: string
+              enum:
+                - Log
+                - Reject
+            uniqueItems: true
+          reportPolicyViolationOnLog:
+            type: boolean
+            title: Report policy violation on log
+            description: If true, Flex Gateway reports a policy violation when this pattern is detected even if only the "Log" action is configured. If false, policy violations are only reported when the "Reject" action is configured.
+            default: true
+        required:
+          - regex
+          - name
+          - actions
+    errorCodeOnReject:
+      type: integer
+      title: Error code on reject
+      description: JSON-RPC 2.0 error code to return when PII is detected and "Reject" action is configured. Must be between -32008 and -32099 (A2A-specific server error range). Applies to all PII types.
+      default: -32023
+      minimum: -32099
+      maximum: -32008
