@@ -1,4 +1,5 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 // The policy registers only an `on_request` filter. Responses must pass
 // through unmodified — including status codes, bodies, and any headers the

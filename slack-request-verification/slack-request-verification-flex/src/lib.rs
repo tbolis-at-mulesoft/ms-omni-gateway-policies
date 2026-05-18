@@ -1,4 +1,6 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 //! Slack Request Verification Policy for Flex Gateway
 //!
 //! Validates incoming Slack requests by verifying HMAC-SHA256 signatures

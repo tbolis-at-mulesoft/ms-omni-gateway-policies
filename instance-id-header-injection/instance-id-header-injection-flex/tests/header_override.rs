@@ -1,4 +1,5 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 // Integration tests covering header-override semantics. The policy uses
 // `set_header`, which in PDK semantics replaces any existing value. A client

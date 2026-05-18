@@ -1,4 +1,5 @@
 # Copyright 2026 Salesforce, Inc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
 ---
 apiVersion: gateway.mulesoft.com/v1alpha1
 kind: Configuration

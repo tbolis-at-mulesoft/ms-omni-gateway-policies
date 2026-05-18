@@ -1,4 +1,5 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 // Integration tests for the basic header-injection behavior:
 // the policy must inject `x-anypoint-api-instance-id` on every forwarded request.

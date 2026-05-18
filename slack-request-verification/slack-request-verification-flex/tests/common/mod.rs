@@ -1,4 +1,5 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 
 // This module contains common Rust stuff shared between test files.
 

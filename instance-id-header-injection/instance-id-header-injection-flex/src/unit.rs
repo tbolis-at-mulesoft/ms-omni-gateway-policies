@@ -1,4 +1,5 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 // Unit tests for the instance-id-header-injection policy. These exercise the
 // full request lifecycle without a running Envoy proxy, container, or

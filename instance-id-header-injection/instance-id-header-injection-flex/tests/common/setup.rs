@@ -1,4 +1,5 @@
 // Copyright 2026 Salesforce, Inc. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 // Test setup helpers: build a Flex+httpmock TestComposite for the
 // instance-id-header-injection policy.
